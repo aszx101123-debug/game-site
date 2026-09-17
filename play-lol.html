@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>라스트힛 트레이너 — RIOT VERSE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lol-body">
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">RIOT<span>VERSE</span></a>
+      <ul class="nav-links">
+        <li><a href="valorant.html" class="nav-link val">VALORANT</a></li>
+        <li><a href="lol.html" class="nav-link lol">LEAGUE OF LEGENDS</a></li>
+        <li><a href="index.html#play" class="nav-link play-link active">게임 플레이</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="game-shell">
+    <h1 class="game-title">Last-hit Trainer</h1>
+    <p class="game-desc">미니언은 아군 미니언의 공격으로 체력이 계속 줄어듭니다. 클릭하면 65의 피해를 주고, 미니언을 직접 처치하면 CS와 골드 획득! 타이밍을 놓치면 CS를 놓칩니다.</p>
+
+    <div class="game-hud">
+      <div class="hud-box"><span class="hud-label">남은 시간</span><span class="hud-value" id="hudTime">60</span></div>
+      <div class="hud-box"><span class="hud-label">CS</span><span class="hud-value" id="hudCs">0</span></div>
+      <div class="hud-box"><span class="hud-label">골드</span><span class="hud-value" id="hudGold">0</span></div>
+      <div class="hud-box"><span class="hud-label">놓친 CS</span><span class="hud-value" id="hudMiss">0</span></div>
+    </div>
+
+    <div class="game-arena lol-arena" id="arena">
+      <div class="lane-ground"></div>
+      <div class="tower"><div class="tower-body"></div></div>
+      <div class="game-overlay" id="overlay">
+        <div class="overlay-card">
+          <h2 id="ovTitle">라스트힛 훈련</h2>
+          <p id="ovText">미니언 체력이 65 이하일 때 클릭하면 마지막 타격!<br>미니언 +21골드 · 마법사 +14골드 · 대포 +60골드<br>60초 동안 최대한 많은 CS를 챙기세요.</p>
+          <button class="cta-btn lol-btn" id="startBtn">훈련 시작</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>이 사이트는 Riot Games와 무관한 팬 제작 프로젝트입니다.</p>
+  </footer>
+
+  <script src="js/lasthit.js"></script>
+</body>
+</html>

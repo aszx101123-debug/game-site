@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VALORANT — RIOT VERSE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="val-body">
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">RIOT<span>VERSE</span></a>
+      <ul class="nav-links">
+        <li><a href="valorant.html" class="nav-link val active">VALORANT</a></li>
+        <li><a href="lol.html" class="nav-link lol">LEAGUE OF LEGENDS</a></li>
+        <li><a href="index.html#play" class="nav-link play-link">게임 플레이</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="game-hero val-hero">
+    <div class="hero-content">
+      <p class="hero-kicker">TACTICAL SHOOTER · 5V5</p>
+      <h1 class="hero-title">VALORANT</h1>
+      <p class="hero-sub">여기서 총알보다 빠른 것은 당신의 반응속도뿐입니다.</p>
+      <div class="hero-actions">
+        <a href="play-valorant.html" class="cta-btn val-btn">에임 트레이너 플레이</a>
+        <a href="https://playvalorant.com/ko-kr/" target="_blank" rel="noopener" class="cta-btn ghost-btn">공식 사이트</a>
+        <a href="#agents" class="cta-btn ghost-btn">요원 살펴보기</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="agents" class="section">
+      <h3 class="section-title val-title">요원 선택</h3>
+      <div class="filter-bar" id="roleFilter">
+        <button class="filter-btn active" data-role="all">전체</button>
+        <button class="filter-btn" data-role="duelist">듀얼리스트</button>
+        <button class="filter-btn" data-role="initiator">이니시에이터</button>
+        <button class="filter-btn" data-role="controller">컨트롤러</button>
+        <button class="filter-btn" data-role="sentinel">센티널</button>
+      </div>
+      <div class="agent-grid" id="agentGrid">
+        <div class="agent-card" data-role="duelist">
+          <div class="agent-art jett"></div>
+          <div class="agent-info">
+            <span class="role-tag">듀얼리스트</span>
+            <h4>제트</h4>
+            <p>바람처럼 스쳐 지나가며 처형하는 한국의 검객.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="duelist">
+          <div class="agent-art phoenix"></div>
+          <div class="agent-info">
+            <span class="role-tag">듀얼리스트</span>
+            <h4>피닉스</h4>
+            <p>불꽃으로 전장을 밝히는 영국의 화염방사자.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="duelist">
+          <div class="agent-art reyna"></div>
+          <div class="agent-info">
+            <span class="role-tag">듀얼리스트</span>
+            <h4>레이나</h4>
+            <p>적을 처치할수록 강해지는 멕시코의 뱀파이어.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="initiator">
+          <div class="agent-art sova"></div>
+          <div class="agent-info">
+            <span class="role-tag">이니시에이터</span>
+            <h4>소바</h4>
+            <p>시야를 밝히고 표식을 남기는 러시아의 사냥꾼.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="controller">
+          <div class="agent-art brimstone"></div>
+          <div class="agent-info">
+            <span class="role-tag">컨트롤러</span>
+            <h4>브림스톤</h4>
+            <p>궤도 지원 화력을 지휘하는 미국의 베테랑.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="controller">
+          <div class="agent-art viper"></div>
+          <div class="agent-info">
+            <span class="role-tag">컨트롤러</span>
+            <h4>바이퍼</h4>
+            <p>독성 화학 물질로 지역을 장악하는 미국의 화학자.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="sentinel">
+          <div class="agent-art sage"></div>
+          <div class="agent-info">
+            <span class="role-tag">센티널</span>
+            <h4>세이지</h4>
+            <p>아군을 치유하고 부활시키는 중국의 수호자.</p>
+          </div>
+        </div>
+        <div class="agent-card" data-role="sentinel">
+          <div class="agent-art cypher"></div>
+          <div class="agent-info">
+            <span class="role-tag">센티널</span>
+            <h4>사이퍼</h4>
+            <p>감시 카메라로 적의 모든 움직임을 포착하는 정보요원.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section maps-section">
+      <h3 class="section-title val-title">전장</h3>
+      <div class="map-grid">
+        <div class="map-card"><div class="map-art ascent"></div><h4>어센트</h4><p>이탈리아 베니스의 떠오른 도시</p></div>
+        <div class="map-card"><div class="map-art bind"></div><h4>바인드</h4><p>모로코 라바트의 사막 기지</p></div>
+        <div class="map-card"><div class="map-art haven"></div><h4>헤이븐</h4><p>부탐 팀포의 신성한 지대</p></div>
+        <div class="map-card"><div class="map-art split"></div><h4>스플릿</h4><p>일본 도쿄의 떠오른 도시</p></div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <h3>준비되었나요?</h3>
+      <p>클라이언트를 다운로드하고 첫 번째 라운드를 시작하세요.</p>
+      <a href="play-valorant.html" class="cta-btn val-btn">에임 트레이너 플레이</a>
+      <a href="https://playvalorant.com/ko-kr/" target="_blank" rel="noopener" class="cta-btn ghost-btn">공식 사이트</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>이 사이트는 Riot Games와 무관한 팬 제작 프로젝트입니다.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

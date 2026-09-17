@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리그 오브 레전드 — RIOT VERSE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lol-body">
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">RIOT<span>VERSE</span></a>
+      <ul class="nav-links">
+        <li><a href="valorant.html" class="nav-link val">VALORANT</a></li>
+        <li><a href="lol.html" class="nav-link lol active">LEAGUE OF LEGENDS</a></li>
+        <li><a href="index.html#play" class="nav-link play-link">게임 플레이</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="game-hero lol-hero">
+    <div class="hero-content">
+      <p class="hero-kicker">MOBA · 5V5</p>
+      <h1 class="hero-title">LEAGUE<br>OF LEGENDS</h1>
+      <p class="hero-sub">소환사의 협곡에서 전설이 되는 순간을 경험하세요.</p>
+      <div class="hero-actions">
+        <a href="play-lol.html" class="cta-btn lol-btn">라스트힛 트레이너 플레이</a>
+        <a href="https://www.leagueoflegends.com/ko-kr/" target="_blank" rel="noopener" class="cta-btn ghost-btn">공식 사이트</a>
+        <a href="#champions" class="cta-btn ghost-btn">챔피언 살펴보기</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="champions" class="section">
+      <h3 class="section-title lol-title">챔피언 선택</h3>
+      <div class="filter-bar" id="roleFilter">
+        <button class="filter-btn active" data-role="all">전체</button>
+        <button class="filter-btn" data-role="assassin">암살자</button>
+        <button class="filter-btn" data-role="fighter">전사</button>
+        <button class="filter-btn" data-role="mage">마법사</button>
+        <button class="filter-btn" data-role="marksman">원거리</button>
+        <button class="filter-btn" data-role="support">서포터</button>
+        <button class="filter-btn" data-role="tank">탱커</button>
+      </div>
+      <div class="champion-grid" id="agentGrid">
+        <div class="champion-card" data-role="mage">
+          <div class="champion-art ahri"></div>
+          <div class="champion-info">
+            <span class="role-tag">마법사</span>
+            <h4>아리</h4>
+            <p>구슬과 매혹으로 마음을 흔드는 구미호.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="fighter">
+          <div class="champion-art yasuo"></div>
+          <div class="champion-info">
+            <span class="role-tag">전사</span>
+            <h4>야스오</h4>
+            <p>바람을 다루는 떠돌이 검객.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="mage">
+          <div class="champion-art lux"></div>
+          <div class="champion-info">
+            <span class="role-tag">마법사</span>
+            <h4>럭스</h4>
+            <p>빛의 마법을 휘두르는 데마시아의 희망.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="marksman">
+          <div class="champion-art jinx"></div>
+          <div class="champion-info">
+            <span class="role-tag">원거리</span>
+            <h4>징크스</h4>
+            <p>폭발적인 화력의 자일 건너 미치광이.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="assassin">
+          <div class="champion-art zed"></div>
+          <div class="champion-info">
+            <span class="role-tag">암살자</span>
+            <h4>제드</h4>
+            <p>그림자 기술의 대가인 녹서스의 암살자.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="tank">
+          <div class="champion-art garen"></div>
+          <div class="champion-info">
+            <span class="role-tag">탱커</span>
+            <h4>가렌</h4>
+            <p>데마시아의 힘을 상징하는 정의의 선봉장.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="support">
+          <div class="champion-art thresh"></div>
+          <div class="champion-info">
+            <span class="role-tag">서포터</span>
+            <h4>쓰레쉬</h4>
+            <p>영혼을 수확하는 사슬 감옥의 간수.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="support">
+          <div class="champion-art sona"></div>
+          <div class="champion-info">
+            <span class="role-tag">서포터</span>
+            <h4>소나</h4>
+            <p>음악으로 아군을 돕는 멜로디의 음유시인.</p>
+          </div>
+        </div>
+        <div class="champion-card" data-role="fighter">
+          <div class="champion-art darius"></div>
+          <div class="champion-info">
+            <span class="role-tag">전사</span>
+            <h4>다리우스</h4>
+            <p>녹서스의 힘을 증명하는 처형자.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section position-section">
+      <h3 class="section-title lol-title">포지션 안내</h3>
+      <div class="position-grid">
+        <div class="position-card"><span class="pos-icon">⚔️</span><h4>탑</h4><p>혼자 라인에서 맞서는 근접 전사의 전장</p></div>
+        <div class="position-card"><span class="pos-icon">🌪️</span><h4>정글</h4><p>숲을 누비며 게임의 흐름을 주도</p></div>
+        <div class="position-card"><span class="pos-icon">✨</span><h4>미드</h4><p>지도 중앙에서 영향력을 떨치는 마법사</p></div>
+        <div class="position-card"><span class="pos-icon">🏹</span><h4>바텀</h4><p>서포터와 함께 성장하는 원거리 딜러</p></div>
+        <div class="position-card"><span class="pos-icon">🛡️</span><h4>서포터</h4><p>아군을 지키고 시야를 장악하는 조력자</p></div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <h3>전설이 되기를 원하나요?</h3>
+      <p>클라이언트를 다운로드하고 협곡에 첫발을 내딛으세요.</p>
+      <a href="play-lol.html" class="cta-btn lol-btn">라스트힛 트레이너 플레이</a>
+      <a href="https://www.leagueoflegends.com/ko-kr/" target="_blank" rel="noopener" class="cta-btn ghost-btn">공식 사이트</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>이 사이트는 Riot Games와 무관한 팬 제작 프로젝트입니다.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

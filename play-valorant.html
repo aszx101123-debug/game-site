@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에임 트레이너 — RIOT VERSE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="val-body">
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">RIOT<span>VERSE</span></a>
+      <ul class="nav-links">
+        <li><a href="valorant.html" class="nav-link val">VALORANT</a></li>
+        <li><a href="lol.html" class="nav-link lol">LEAGUE OF LEGENDS</a></li>
+        <li><a href="index.html#play" class="nav-link play-link active">게임 플레이</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="game-shell">
+    <h1 class="game-title">Aim Trainer</h1>
+    <p class="game-desc">30초 안에 최대한 많은 타깃을 명중시키세요. 몸통 +50점, 작은 헤드 원을 맞추면 헤드샷 +150점! 빗나가면 명중률이 떨어집니다.</p>
+
+    <div class="game-hud">
+      <div class="hud-box"><span class="hud-label">남은 시간</span><span class="hud-value" id="hudTime">30.0</span></div>
+      <div class="hud-box"><span class="hud-label">점수</span><span class="hud-value" id="hudScore">0</span></div>
+      <div class="hud-box"><span class="hud-label">명중률</span><span class="hud-value" id="hudAcc">0%</span></div>
+      <div class="hud-box"><span class="hud-label">연속 명중</span><span class="hud-value" id="hudStreak">0</span></div>
+    </div>
+
+    <div class="game-arena val-arena" id="arena">
+      <div class="game-overlay" id="overlay">
+        <div class="overlay-card">
+          <h2 id="ovTitle">사격 훈련장</h2>
+          <p id="ovText">타깃은 잠깐 나타났다 사라집니다.<br>헤드샷 +150점 / 바디샷 +50점<br>연속 명중 기록을 노려보세요.</p>
+          <button class="cta-btn val-btn" id="startBtn">훈련 시작</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>이 사이트는 Riot Games와 무관한 팬 제작 프로젝트입니다.</p>
+  </footer>
+
+  <script src="js/aimtrainer.js"></script>
+</body>
+</html>
