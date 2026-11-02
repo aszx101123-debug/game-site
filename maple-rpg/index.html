@@ -36,7 +36,7 @@
           <div class="canvas-wrap">
             <canvas id="gameCanvas" width="960" height="540" aria-label="2D RPG 게임 화면"></canvas>
             <div id="startOverlay" class="screen-overlay"><div class="overlay-card title-card">
-              <p class="eyebrow">WELCOME, ADVENTURER</p><h2>초록숲 모험</h2><p>작은 모험가의 첫 번째 사냥이 시작됩니다.</p>
+              <p class="eyebrow">WELCOME, ADVENTURER</p><h2>모험가 마을</h2><p>직업을 선택하고 마을에서 첫 모험을 준비하세요.</p>
               <button id="startBtn" class="primary-button" type="button">모험 시작하기 <span>▶</span></button>
               <small>저장 데이터가 있으면 이어서 플레이합니다.</small>
             </div></div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <aside class="side-panel">
-          <section class="side-card quest-card"><p class="card-label">초보자 퀘스트</p><h3>숲의 슬라임 정리</h3><p>슬라임을 처치하고 모험가의 실력을 증명하세요.</p>
+          <section class="side-card quest-card"><p class="card-label">길드 의뢰</p><h3>숲의 슬라임 정리</h3><p>슬라임을 처치하고 모험가의 실력을 증명하세요.</p>
             <div class="quest-progress"><span id="questProgressFill"></span></div><div class="quest-meta"><span>처치 <b id="killCount">0</b> / 5</span><span id="questReward">보상 300 EXP</span></div>
           </section>
           <section class="side-card inventory-card"><div class="card-heading"><p class="card-label">QUICK INVENTORY</p><button id="usePotionBtn" class="tiny-button" type="button">포션 사용</button></div>
@@ -59,9 +59,9 @@
             <div class="quick-item"><span class="item-icon gold">🪙</span><span><b>메소</b><small>몬스터가 떨어뜨리는 화폐</small></span><strong id="sideMeso">0</strong></div>
           </section>
           <section class="side-card guide-card"><p class="card-label">ADVENTURER GUIDE</p>
-            <div class="guide-line"><span class="guide-dot green"></span><span>초록 슬라임</span><small>가까이 오면 공격</small></div>
-            <div class="guide-line"><span class="guide-dot purple"></span><span>숲의 버섯왕</span><small>숲 끝의 보스</small></div>
-            <div class="guide-line"><span class="guide-dot blue"></span><span>상점 NPC</span><small>E 키로 대화</small></div>
+            <div class="guide-line"><span class="guide-dot green"></span><span>잡화 상점</span><small>포션 구매 · E</small></div>
+            <div class="guide-line"><span class="guide-dot purple"></span><span>대장간</span><small>장비 강화 · E</small></div>
+            <div class="guide-line"><span class="guide-dot blue"></span><span>모험가 길드</span><small>토벌 의뢰 · E</small></div>
           </section>
         </aside>
       </section>
