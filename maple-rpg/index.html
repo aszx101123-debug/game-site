@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#13243a">
+  <meta name="description" content="브라우저에서 즐기는 오리지널 2D 횡스크롤 RPG 데모">
+  <title>Maple Adventure — 2D RPG Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Maple Adventure 홈"><span class="brand-mark">✦</span><span>MAPLE <b>ADVENTURE</b></span></a>
+      <div class="header-note">ORIGINAL 2D RPG · BROWSER DEMO</div>
+    </header>
+    <main>
+      <section class="intro-row">
+        <div><p class="eyebrow">FOREST REGION · DEMO 01</p><h1>초록숲 모험</h1><p class="subtitle">슬라임을 사냥하고, 메소를 모으고, 숲의 보스를 찾아가세요.</p></div>
+        <div class="quick-actions">
+          <button id="inventoryBtn" class="utility-button" type="button">🎒 인벤토리 <kbd>I</kbd></button>
+          <button id="saveBtn" class="utility-button" type="button">💾 저장 <kbd>S</kbd></button>
+          <button id="soundBtn" class="utility-button" type="button" aria-pressed="true">🔊 사운드</button>
+        </div>
+      </section>
+      <section class="game-layout" aria-label="게임 화면과 상태창">
+        <div class="game-column">
+          <div class="hud-panel">
+            <div class="character-info"><div class="avatar">⚔️</div><div class="identity">
+              <div class="level-line"><strong id="levelText">Lv. 1 모험가</strong><span id="statText">ATK 18 · DEF 4</span></div>
+              <div class="bar-row"><span>HP</span><div class="bar hp"><i id="hpFill"></i></div><b id="hpText">120 / 120</b></div>
+              <div class="bar-row"><span>EXP</span><div class="bar exp"><i id="expFill"></i></div><b id="expText">0 / 100</b></div>
+            </div></div>
+            <div class="money-box"><span>MESO</span><strong>🪙 <b id="mesoText">0</b></strong></div>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="gameCanvas" width="960" height="540" aria-label="2D RPG 게임 화면"></canvas>
+            <div id="startOverlay" class="screen-overlay"><div class="overlay-card title-card">
+              <p class="eyebrow">WELCOME, ADVENTURER</p><h2>초록숲 모험</h2><p>작은 모험가의 첫 번째 사냥이 시작됩니다.</p>
+              <button id="startBtn" class="primary-button" type="button">모험 시작하기 <span>▶</span></button>
+              <small>저장 데이터가 있으면 이어서 플레이합니다.</small>
+            </div></div>
+            <div id="gameOverOverlay" class="screen-overlay hidden"><div class="overlay-card">
+              <p class="eyebrow">ADVENTURE PAUSED</p><h2>잠시 쉬어가기</h2><p>체력을 회복하고 다시 숲으로 돌아가세요.</p>
+              <button id="respawnBtn" class="primary-button" type="button">마을에서 부활하기</button>
+            </div></div>
+            <div id="toast" class="toast" role="status" aria-live="polite"></div>
+          </div>
+          <div class="control-strip">
+            <span><kbd>A</kbd><kbd>D</kbd> 이동</span><span><kbd>SPACE</kbd> 점프</span><span><kbd>J</kbd> 공격</span><span><kbd>E</kbd> NPC</span><span><kbd>1</kbd> 포션</span>
+          </div>
+        </div>
+        <aside class="side-panel">
+          <section class="side-card quest-card"><p class="card-label">초보자 퀘스트</p><h3>숲의 슬라임 정리</h3><p>슬라임을 처치하고 모험가의 실력을 증명하세요.</p>
+            <div class="quest-progress"><span id="questProgressFill"></span></div><div class="quest-meta"><span>처치 <b id="killCount">0</b> / 5</span><span id="questReward">보상 300 EXP</span></div>
+          </section>
+          <section class="side-card inventory-card"><div class="card-heading"><p class="card-label">QUICK INVENTORY</p><button id="usePotionBtn" class="tiny-button" type="button">포션 사용</button></div>
+            <div class="quick-item"><span class="item-icon red">🧪</span><span><b>빨간 포션</b><small>HP 45 회복</small></span><strong id="potionCount">3개</strong></div>
+            <div class="quick-item"><span class="item-icon gold">🪙</span><span><b>메소</b><small>몬스터가 떨어뜨리는 화폐</small></span><strong id="sideMeso">0</strong></div>
+          </section>
+          <section class="side-card guide-card"><p class="card-label">ADVENTURER GUIDE</p>
+            <div class="guide-line"><span class="guide-dot green"></span><span>초록 슬라임</span><small>가까이 오면 공격</small></div>
+            <div class="guide-line"><span class="guide-dot purple"></span><span>숲의 버섯왕</span><small>숲 끝의 보스</small></div>
+            <div class="guide-line"><span class="guide-dot blue"></span><span>상점 NPC</span><small>E 키로 대화</small></div>
+          </section>
+        </aside>
+      </section>
+      <section class="below-grid">
+        <div class="tip-card"><span>💡</span><p><b>전투 팁</b> 공격 키 J를 한 번 누르면 한 번 휘두릅니다. 슬라임이 공격 범위에 들어왔을 때 사용하세요.</p></div>
+        <div class="tip-card"><span>💾</span><p><b>자동 저장</b> 캐릭터의 레벨, 경험치, 메소, 포션과 위치는 브라우저에 자동 저장됩니다.</p></div>
+      </section>
+    </main>
+    <footer>MAPLE ADVENTURE · 독립 창작 데모 · 진행 데이터는 현재 브라우저에 저장됩니다.</footer>
+  </div>
+  <div id="inventoryModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="inventoryTitle">
+    <div class="modal-card"><button class="close-button" data-close="inventoryModal" type="button" aria-label="닫기">×</button><p class="eyebrow">ITEM STORAGE</p><h2 id="inventoryTitle">🎒 인벤토리</h2><div id="inventoryContents" class="inventory-list"></div><p class="modal-hint">숫자 1 키로 빨간 포션을 사용할 수 있습니다.</p></div>
+  </div>
+  <div id="shopModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="shopTitle">
+    <div class="modal-card shop-card"><button class="close-button" data-close="shopModal" type="button" aria-label="닫기">×</button><p class="eyebrow">FOREST SUPPLY</p><h2 id="shopTitle">🏪 약초 상점</h2><p class="shop-intro">모험에 필요한 물품을 준비하세요.</p>
+      <div class="shop-item"><span class="item-icon red">🧪</span><span><b>빨간 포션</b><small>HP 45 회복</small></span><strong>30 메소</strong><button id="buyPotionBtn" class="tiny-button" type="button">구매</button></div>
+      <div class="shop-balance">보유 메소: <b id="shopMeso">0</b></div>
+    </div>
+  </div>
+  <script src="./game.js" defer></script>
+</body>
+</html>
