@@ -18,6 +18,9 @@ Open the GitHub Pages game path after Pages has been enabled:
 - `Esc`: close open windows
 
 ## Current systems
+- A walkable Adventurer Town hub with four service buildings and five NPCs
+- Town services: potion shop, blacksmith gear upgrades, guild hunt quests, and inn recovery
+- Town-to-field portal and return portal, with scene/location autosave and legacy-save migration
 - Three playable jobs: Warrior, Mage, and Archer, each with three job skills
 - Three connected regions: Green Forest, Mushroom Hills, and Frozen Cave
 - Region progression gated by defeating the area's boss
