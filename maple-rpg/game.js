@@ -166,8 +166,18 @@ function drawTown(){
  drawTownBuilding(650,255,175,'#9babb0','#536b78','대장간','#6f8792');
  drawTownBuilding(1080,280,190,'#d9c79c','#7d6989','모험가 길드','#806d8e');
  drawTownBuilding(1490,190,135,'#d5b18b','#85614f','여관','#9b7359');
- ground();drawTownNPCs();drawTownGate();
+ drawTownGround();drawTownDecor();drawTownNPCs();drawTownGate();
  ctx.fillStyle='rgba(24,55,64,.7)';ctx.font='900 12px Nunito';ctx.fillText('ADVENTURER TOWN',20,H-20);
+}
+function drawTownGround(){
+ ctx.fillStyle='#8c674b';ctx.fillRect(-camera.x,GROUND,WORLD,H-GROUND);
+ ctx.fillStyle='#75b66a';ctx.fillRect(-camera.x,GROUND,WORLD,12);
+ ctx.fillStyle='#b5a07c';ctx.fillRect(-camera.x,GROUND+12,WORLD,58);
+ for(let x=0;x<WORLD;x+=42){const sx=x-camera.x;ctx.fillStyle='#d5c39a';ctx.fillRect(sx+3,GROUND+20,33,20);ctx.fillStyle='#9d8968';ctx.fillRect(sx+4,GROUND+43,33,12)}
+}
+function drawTownDecor(){
+ for(let x=75;x<WORLD-100;x+=285){const sx=x-camera.x;if(sx< -40||sx>W+40)continue;ctx.fillStyle='#6a4f38';ctx.fillRect(sx,GROUND-68,7,68);ctx.fillStyle='#f6e3a6';ctx.beginPath();ctx.arc(sx+3,GROUND-73,12,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,230,153,.22)';ctx.beginPath();ctx.arc(sx+3,GROUND-73,22,0,Math.PI*2);ctx.fill()}
+ for(const x of [590,1020,1430]){const sx=x-camera.x;if(sx< -40||sx>W+40)continue;ctx.fillStyle='#9a6d49';ctx.fillRect(sx,GROUND-23,22,23);ctx.fillStyle='#4f9b67';ctx.beginPath();ctx.arc(sx+11,GROUND-28,18,0,Math.PI*2);ctx.fill()}
 }
 function drawTownNPCs(){
  for(const n of townNpcs){const x=n.x-camera.x,y=GROUND-59;if(x< -60||x>W+60)continue;
