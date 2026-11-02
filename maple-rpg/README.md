@@ -32,7 +32,7 @@ Open the GitHub Pages game path after Pages has been enabled:
 - Autosave and manual save through browser localStorage
 
 ## Development status
-This is an early playable foundation, not yet a full online MMORPG. The next milestones are: a proper town hub and portal/map UI; expanded monster and boss attack patterns; a larger equipment/upgrade system; NPC dialogue and multi-step quest chains; character animations and original art/audio; and, only after the single-player foundation is stable, server-backed accounts and multiplayer.
+This is an early playable single-player foundation, not yet a full online MMORPG. The town hub, service NPCs, guild hunt contract, blacksmith upgrades, and town/field portals are now implemented. Next milestones: richer NPC dialogue and multi-step quest chains; unique monster and boss attack patterns; larger equipment, inventory and skill systems; original character animations, effects, and audio; and, after the single-player foundation is stable, server-backed accounts and multiplayer.
 
 ## Technical notes
 - Built with Canvas 2D, HTML, CSS, and vanilla JavaScript.
