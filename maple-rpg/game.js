@@ -97,13 +97,64 @@ function useSkill(slot){
  updateUI();
 }
 function loadRegion(index,notify){
- regionIndex=clamp(index,0,regionDefs.length-1);const r=regionDefs[regionIndex];WORLD=3800;
+ const targetIndex=clamp(index,0,regionDefs.length-1),changed=targetIndex!==regionIndex;regionIndex=targetIndex;scene='field';if(changed){regionKills=0;questAccepted=false;questClaimed=false}const r=regionDefs[regionIndex];WORLD=3800;
  platforms=[{x:0,y:GROUND,w:WORLD,h:100},{x:330,y:385,w:190,h:18},{x:690,y:320,w:175,h:18},{x:1060,y:390,w:210,h:18},{x:1460,y:335,w:190,h:18},{x:1880,y:390,w:190,h:18},{x:2280,y:315,w:200,h:18},{x:2740,y:380,w:210,h:18},{x:3190,y:335,w:210,h:18}];
  const xs=[560,900,1360,1840,2380,2850];slimes=xs.map((x,i)=>{const s=slime(x,90+(i%3)*12);s.hp=r.enemyHp;s.maxHp=r.enemyHp;s.exp=r.enemyExp;s.meso=r.enemyMeso+Math.floor(Math.random()*10);s.enemyName=r.enemyName;return s});
  npc={x:1120,y:GROUND-62,w:32,h:62};boss={x:3370,y:GROUND-86,w:62,h:86,hp:r.bossHp,maxHp:r.bossHp,alive:true,face:-1,speed:1.05+regionIndex*.12,cd:0,flash:0};
- player.x=120;player.y=GROUND-player.h;player.vx=player.vy=0;player.grounded=true;player.inv=90;player.spawnX=120;player.spawnY=GROUND-player.h;
+ player.x=220;player.y=GROUND-player.h;player.vx=player.vy=0;player.grounded=true;player.inv=90;player.spawnX=220;player.spawnY=GROUND-player.h;
  drops=[];particles=[];texts=[];projectiles=[];regionKills=0;questClaimed=false;camera.x=0;camera.shake=0;updateUI();
  if(notify!==false){toast(r.name+' 지역에 도착했습니다!');save(false)}
+}
+function loadTown(notify){
+ scene='town';WORLD=2050;
+ platforms=[{x:0,y:GROUND,w:WORLD,h:100}];
+ slimes=[];drops=[];projectiles=[];npc=null;
+ player.x=clamp(player.x||150,80,WORLD-player.w-100);player.y=GROUND-player.h;player.vx=player.vy=0;player.grounded=true;player.inv=35;
+ player.spawnX=150;player.spawnY=GROUND-player.h;camera.x=clamp(player.x-360,0,WORLD-W);camera.shake=0;
+ updateUI();if(notify!==false){toast('모험가 마을로 돌아왔습니다.');save(false)}
+}
+function drawTownBuilding(worldX,width,height,body,roof,sign,accent){
+ const x=worldX-camera.x,y=GROUND-height;if(x+width< -80||x>W+80)return;
+ ctx.fillStyle='rgba(28,48,54,.18)';ctx.fillRect(x-8,GROUND-4,width+16,9);
+ ctx.fillStyle=body;ctx.fillRect(x,y,width,height);
+ ctx.fillStyle=roof;ctx.beginPath();ctx.moveTo(x-18,y+8);ctx.lineTo(x+width*.5,y-48);ctx.lineTo(x+width+18,y+8);ctx.closePath();ctx.fill();
+ ctx.fillStyle=accent;ctx.fillRect(x+width*.5-25,GROUND-74,50,74);
+ ctx.fillStyle='#f6dca1';ctx.fillRect(x+22,y+35,34,34);ctx.fillRect(x+width-56,y+35,34,34);
+ ctx.fillStyle='#6a8b99';ctx.fillRect(x+28,y+41,22,22);ctx.fillRect(x+width-50,y+41,22,22);
+ ctx.fillStyle='#fff1ce';ctx.fillRect(x+width*.5-35,y+19,70,21);
+ ctx.fillStyle='#34465b';ctx.font='bold 11px "Noto Sans KR"';ctx.textAlign='center';ctx.fillText(sign,x+width*.5,y+34);ctx.textAlign='left';
+}
+function drawTown(){
+ const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#83c9ef');g.addColorStop(.65,'#d8f0e7');g.addColorStop(1,'#f4ebc9');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+ for(let i=0;i<7;i++){const x=((i*190-camera.x*.16)%(W+200)+W+200)%(W+200)-80,y=62+(i%3)*35;ctx.fillStyle='rgba(255,255,255,.72)';ctx.beginPath();ctx.ellipse(x,y,35,12,0,0,Math.PI*2);ctx.ellipse(x+27,y-5,27,14,0,0,Math.PI*2);ctx.ellipse(x+48,y,25,10,0,0,Math.PI*2);ctx.fill()}
+ ctx.fillStyle='#9ac9ab';ctx.beginPath();ctx.moveTo(0,GROUND);for(let x=0;x<=W;x+=48)ctx.lineTo(x,315+34*Math.sin((x+camera.x*.18)*.008));ctx.lineTo(W,GROUND);ctx.fill();
+ drawTownBuilding(230,230,150,'#d8ad76','#945c4e','잡화 상점','#8a5948');
+ drawTownBuilding(650,255,175,'#9babb0','#536b78','대장간','#6f8792');
+ drawTownBuilding(1080,280,190,'#d9c79c','#7d6989','모험가 길드','#806d8e');
+ drawTownBuilding(1490,190,135,'#d5b18b','#85614f','여관','#9b7359');
+ ground();drawTownNPCs();drawTownGate();
+ ctx.fillStyle='rgba(24,55,64,.7)';ctx.font='900 12px Nunito';ctx.fillText('ADVENTURER TOWN',20,H-20);
+}
+function drawTownNPCs(){
+ for(const n of townNpcs){const x=n.x-camera.x,y=GROUND-59;if(x< -60||x>W+60)continue;
+  ctx.fillStyle='rgba(25,49,54,.2)';ctx.beginPath();ctx.ellipse(x+16,GROUND+1,19,5,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=n.kind==='smith'?'#9b765b':n.kind==='guild'?'#5f6f9d':n.kind==='merchant'?'#8c598e':n.kind==='inn'?'#9a624d':'#4e8b78';ctx.fillRect(x+3,y+27,26,31);
+  ctx.fillStyle='#f0c99e';ctx.fillRect(x+5,y+4,22,25);ctx.fillStyle=n.kind==='smith'?'#4d5965':n.kind==='guild'?'#4f5279':'#6c4a42';ctx.fillRect(x+3,y,27,9);
+  ctx.fillStyle='#263444';ctx.fillRect(x+10,y+15,3,4);ctx.fillRect(x+21,y+15,3,4);
+  if(n.kind==='smith'){ctx.strokeStyle='#d8e3e5';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x+27,y+34);ctx.lineTo(x+39,y+17);ctx.stroke();ctx.fillStyle='#9a704d';ctx.fillRect(x+34,y+11,12,8)}
+  ctx.fillStyle='#1b3143';ctx.fillRect(x-35,y-25,102,17);ctx.fillStyle='#f4f7e8';ctx.font='bold 10px "Noto Sans KR"';ctx.textAlign='center';ctx.fillText(n.name,x+16,y-13);
+  if(Math.abs(player.x-n.x)<100){ctx.fillStyle='#163149';ctx.fillRect(x-8,y-48,50,17);ctx.fillStyle='#d9f8e2';ctx.fillText('[E] 대화',x+17,y-36)}
+ }
+ ctx.textAlign='left';
+}
+function drawTownGate(){
+ const x=WORLD-100-camera.x,y=GROUND-112;ctx.fillStyle='#6e8292';ctx.fillRect(x-13,y+22,88,90);ctx.fillStyle='#d6e7ed';ctx.fillRect(x-4,y+31,70,78);
+ ctx.strokeStyle='#8be1c0';ctx.lineWidth=7;ctx.beginPath();ctx.arc(x+31,y+26,37,Math.PI,0);ctx.stroke();ctx.fillStyle='#9bdef0';ctx.beginPath();ctx.ellipse(x+31,y+68,25,34,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#213b51';ctx.fillRect(x-36,y-18,136,22);ctx.fillStyle='#fff';ctx.font='bold 11px "Noto Sans KR"';ctx.textAlign='center';ctx.fillText('초록숲 사냥터 입구',x+31,y-3);ctx.textAlign='left';
+}
+function drawReturnPortal(){
+ const x=90-camera.x,y=GROUND-100;ctx.fillStyle='#5d7f9d';ctx.fillRect(x-15,y+28,70,75);ctx.strokeStyle='#b5e2ff';ctx.lineWidth=6;ctx.beginPath();ctx.arc(x+20,y+25,34,Math.PI,0);ctx.stroke();ctx.fillStyle='#8dc8ef';ctx.beginPath();ctx.ellipse(x+20,y+63,22,31,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#fff';ctx.font='bold 10px "Noto Sans KR"';ctx.textAlign='center';ctx.fillText('마을 귀환',x+20,y-13);ctx.textAlign='left';
 }
 function drawPortal(){
  const x=WORLD-105-camera.x,y=GROUND-104;ctx.save();ctx.globalAlpha=boss.alive?.35:1;
