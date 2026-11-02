@@ -86,7 +86,7 @@ function interact(){
    if(n.kind==='inn'){player.hp=player.maxHp;player.potions=Math.max(player.potions,1);updateUI();save(false);toast('여관에서 쉬었습니다. HP가 모두 회복됐습니다.');return}
    toast('리아: 오른쪽 끝 포털을 통해 초록숲으로 갈 수 있어요.');return
   }
-  if(player.x>WORLD-210){loadRegion(regionIndex,false);toast(regionDefs[regionIndex].name+' 사냥터에 입장했습니다.');return}
+  if(player.x>WORLD-210){loadRegion(regionIndex,true);return}
   toast('가까이 있는 NPC에게 E 키로 말을 걸어보세요.');return
  }
  if(player.x<205){loadTown(true);return}
@@ -142,7 +142,7 @@ function loadRegion(index,notify){
 function loadTown(notify){
  scene='town';WORLD=2050;
  platforms=[{x:0,y:GROUND,w:WORLD,h:100}];
- slimes=[];drops=[];projectiles=[];npc=null;
+ slimes=[];drops=[];particles=[];texts=[];projectiles=[];npc=null;
  player.x=clamp(player.x||150,80,WORLD-player.w-100);player.y=GROUND-player.h;player.vx=player.vy=0;player.grounded=true;player.inv=35;
  player.spawnX=150;player.spawnY=GROUND-player.h;camera.x=clamp(player.x-360,0,WORLD-W);camera.shake=0;
  updateUI();if(notify!==false){toast('모험가 마을로 돌아왔습니다.');save(false)}
