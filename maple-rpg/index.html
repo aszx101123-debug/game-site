@@ -16,7 +16,7 @@
     </header>
     <main>
       <section class="intro-row">
-        <div><p class="eyebrow">WORLD 01–03 · CLASS & SKILL UPDATE</p><h1>메이플 어드벤처</h1><p class="subtitle">직업을 선택하고 스킬을 익혀 세 지역의 몬스터와 보스를 공략하세요.</p></div>
+        <div><p class="eyebrow">WORLD 01–03 · CLASS & SKILL UPDATE</p><h1>메이플 어드벤처</h1><p class="subtitle">마을에서 장비를 준비하고 길드 의뢰를 받은 뒤 포털을 통해 사냥터로 떠나세요.</p></div>
         <div class="quick-actions">
           <button id="inventoryBtn" class="utility-button" type="button">🎒 인벤토리 <kbd>I</kbd></button>
           <button id="saveBtn" class="utility-button" type="button">💾 저장 <kbd>S</kbd></button>
@@ -47,7 +47,7 @@
             <div id="toast" class="toast" role="status" aria-live="polite"></div>
           </div>
           <div class="control-strip">
-            <span><kbd>A</kbd><kbd>D</kbd> 이동</span><span><kbd>SPACE</kbd> 점프</span><span><kbd>J</kbd> 공격</span><span><kbd>2</kbd>–<kbd>4</kbd> 스킬</span><span><kbd>E</kbd> NPC</span><span><kbd>1</kbd> 포션</span>
+            <span><kbd>A</kbd><kbd>D</kbd> 이동</span><span><kbd>SPACE</kbd> 점프</span><span><kbd>J</kbd> 공격</span><span><kbd>2</kbd>–<kbd>4</kbd> 스킬</span><span><kbd>E</kbd> NPC·포털</span><span><kbd>1</kbd> 포션</span>
           </div>
         </div>
         <aside class="side-panel">
@@ -76,9 +76,33 @@
     <div class="modal-card"><button class="close-button" data-close="inventoryModal" type="button" aria-label="닫기">×</button><p class="eyebrow">ITEM STORAGE</p><h2 id="inventoryTitle">🎒 인벤토리</h2><div id="inventoryContents" class="inventory-list"></div><p class="modal-hint">숫자 1 키로 빨간 포션을 사용할 수 있습니다.</p></div>
   </div>
   <div id="shopModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="shopTitle">
-    <div class="modal-card shop-card"><button class="close-button" data-close="shopModal" type="button" aria-label="닫기">×</button><p class="eyebrow">FOREST SUPPLY</p><h2 id="shopTitle">🏪 약초 상점</h2><p class="shop-intro">모험에 필요한 물품을 준비하세요.</p>
+    <div class="modal-card shop-card"><button class="close-button" data-close="shopModal" type="button" aria-label="닫기">×</button><p class="eyebrow">FOREST SUPPLY</p><h2 id="shopTitle">🏪 잡화 상점</h2><p class="shop-intro">모험에 필요한 물품을 준비하세요.</p>
       <div class="shop-item"><span class="item-icon red">🧪</span><span><b>빨간 포션</b><small>HP 45 회복</small></span><strong>30 메소</strong><button id="buyPotionBtn" class="tiny-button" type="button">구매</button></div>
       <div class="shop-balance">보유 메소: <b id="shopMeso">0</b></div>
+    </div>
+  </div>
+
+  <div id="smithModal" class="modal-backdrop hidden town-modal" role="dialog" aria-modal="true" aria-labelledby="smithTitle">
+    <div class="modal-card shop-card">
+      <button class="close-button" data-close="smithModal" type="button" aria-label="닫기">×</button>
+      <p class="eyebrow">BLACKSMITH · EQUIPMENT</p><h2 id="smithTitle">⚒️ 대장간</h2>
+      <p class="shop-intro">메소를 지불해 장비를 영구 강화합니다.</p>
+      <div class="shop-item"><span class="item-icon gold">⚔️</span><span><b>무기 강화</b><small>공격력 +5</small><small id="weaponUpgradeCost">90 메소</small></span><button id="buyWeaponUpgradeBtn" class="tiny-button" type="button">강화</button></div>
+      <div class="shop-item"><span class="item-icon gold">🛡️</span><span><b>방어구 강화</b><small>방어력 +2</small><small id="armorUpgradeCost">80 메소</small></span><button id="buyArmorUpgradeBtn" class="tiny-button" type="button">강화</button></div>
+      <div class="shop-balance">보유 메소: <b id="smithBalance">0</b></div>
+    </div>
+  </div>
+  <div id="questBoardModal" class="modal-backdrop hidden town-modal" role="dialog" aria-modal="true" aria-labelledby="questBoardTitle">
+    <div class="modal-card">
+      <button class="close-button" data-close="questBoardModal" type="button" aria-label="닫기">×</button>
+      <p class="eyebrow">ADVENTURERS GUILD</p><h2 id="questBoardTitle">📜 토벌 의뢰 게시판</h2>
+      <p class="shop-intro" id="guildQuestText">현재 지역에서 몬스터 5마리를 처치하세요.</p>
+      <div class="quest-contract">
+        <b id="guildQuestName">초록숲 토벌 의뢰</b>
+        <p>목표: 몬스터 5마리 처치</p>
+        <p>보상: 경험치와 메소</p>
+      </div>
+      <button id="acceptQuestBtn" class="primary-button" type="button">의뢰 수락하기</button>
     </div>
   </div>
   <script src="./game.js" defer></script>
