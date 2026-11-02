@@ -40,7 +40,7 @@ function load(){
   player.attack=Math.max(18,+d.attack||18);player.defense=Math.max(0,+d.defense||4);player.weaponName=d.weaponName||'초보자의 검';player.armorName=d.armorName||'가죽 조끼';player.weaponBonus=Math.max(0,+d.weaponBonus||0);player.armorBonus=Math.max(0,+d.armorBonus||0);
   player.meso=Math.max(0,+d.meso||0);player.potions=Math.max(0,+d.potions||0);kills=Math.max(0,+d.kills||0);
   const savedRegionKills=Math.max(0,+d.regionKills||0),savedQuestClaimed=!!d.questClaimed,savedQuestAccepted=!!d.questAccepted;
-  scene=d.scene==='town'?'town':'field';if(scene==='field')loadRegion(regionIndex,false);else loadTown(false);regionKills=savedRegionKills;questClaimed=savedQuestClaimed;questAccepted=savedQuestAccepted;
+  scene=d.scene==='field'?'field':'town';if(!d.scene)player.x=150;if(scene==='field')loadRegion(regionIndex,false);else loadTown(false);regionKills=savedRegionKills;questClaimed=savedQuestClaimed;questAccepted=savedQuestAccepted;
   if(typeof d.bossHp==='number')boss.hp=clamp(d.bossHp,0,boss.maxHp);if(d.bossAlive===false)boss.alive=false;
   player.x=clamp(Number.isFinite(+d.x)?+d.x:120,0,WORLD-player.w);
   player.y=clamp(Number.isFinite(+d.y)?+d.y:GROUND-player.h,0,GROUND-player.h);
@@ -229,7 +229,7 @@ function installAdvancedUI(){
 
 function loop(t){if(!started)return;const dt=last?Math.min(.033,(t-last)/1000):1/60;last=t;update(dt);render();pressed.clear();requestAnimationFrame(loop)}
 function start(){if(started)return;if(!job){$('jobSelect').classList.remove('hidden');return}started=true;paused=false;ui.start.classList.add('hidden');if(audio&&audio.state==='suspended')audio.resume();updateUI();last=0;requestAnimationFrame(loop);toast(scene==='town'?'모험가 마을에 오신 것을 환영합니다!':'사냥을 시작합니다!')}
-function toggle(m){const opening=m.classList.contains('hidden');ui.inventory.classList.add('hidden');ui.shop.classList.add('hidden');if(opening){m.classList.remove('hidden');paused=true;if(m===ui.inventory)renderInventory()}else{m.classList.add('hidden');paused=false}}
+function toggle(m){const opening=m.classList.contains('hidden');[ui.inventory,ui.shop,ui.smith,ui.questBoard].filter(Boolean).forEach(v=>v.classList.add('hidden'));if(opening){m.classList.remove('hidden');paused=true;if(m===ui.inventory)renderInventory()}else{m.classList.add('hidden');paused=false}}
 function closeAll(){[ui.inventory,ui.shop,ui.smith,ui.questBoard].filter(Boolean).forEach(v=>v.classList.add('hidden'));paused=false}
 window.addEventListener('keydown',e=>{if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();if(!down.has(e.code))pressed.add(e.code);down.add(e.code);if(e.code==='Escape')closeAll()});window.addEventListener('keyup',e=>down.delete(e.code));window.addEventListener('blur',()=>down.clear());
 $('startBtn').addEventListener('click',start);$('respawnBtn').addEventListener('click',()=>{player.dead=false;player.hp=Math.max(60,Math.floor(player.maxHp*.65));player.x=player.spawnX;player.y=player.spawnY;player.vx=player.vy=0;player.inv=120;paused=false;ui.over.classList.add('hidden');camera.x=clamp(player.x-400,0,WORLD-W);updateUI();save(false);toast('마을에서 다시 출발합니다.')});
